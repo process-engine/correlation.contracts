@@ -5,7 +5,7 @@ import {Correlation} from './types/index';
 /**
  * The Service for accessing the CorrelationRepository.
  *
- * Correlations combine a correlation ID with a ProcessModel Hash.
+ * Correlations combine a Correlation ID with a ProcessModel Hash.
  * This allows for implementing versioning of ProcessModels, as well
  * as keeping track on how a ProcessModel looked at the time a certain
  * Correlation was run.
@@ -23,7 +23,7 @@ export interface ICorrelationService {
    * @param correlationId           The ID of the Correlation to store.
    * @param processInstanceId       The ID of the ProcessInstance to associate
    *                                with the Correlation.
-   * @param processModelId           The ID of the ProcessModel to associate
+   * @param processModelId          The ID of the ProcessModel to associate
    *                                with the Correlation.
    * @param processModelHash        The Hash of the ProcessModel to associate
    *                                with the Correlation.
@@ -107,31 +107,31 @@ export interface ICorrelationService {
   getSubprocessesForProcessInstance(identity: IIdentity, processInstanceId: string): Promise<Correlation>;
 
   /**
-   * Removes all correlations with a specific ProcessModelId.
+   * Removes all Correlations with a specific ProcessModelId.
    *
    * @async
    * @param identity        The executing users identity.
-   * @param processModelId  The ID of the processModel, by which correlations should be removed.
+   * @param processModelId  The ID of the processModel, by which Correlations should be removed.
    */
   deleteCorrelationByProcessModelId(identity: IIdentity, processModelId: string): Promise<void>;
   /**
-   * Finishes the given correlation.
+   * Finishes the given Correlation.
    *
    * @async
    * @param  identity        The executing users identity.
    * @param  correlationId   The ID of the Correlation to finish.
-   * @throws NotFoundError  When no matching correlation was found.
+   * @throws NotFoundError   When no matching correlation was found.
    */
   finishCorrelation(identity: IIdentity, correlationId: string): Promise<void>;
 
   /**
-   * Finishes the given correlation with an error.
+   * Finishes the given Correlation with an error.
    *
    * @async
    * @param  identity        The executing users identity.
    * @param  correlationId   The ID of the Correlation to finish erroneously.
    * @param  error           The error that occurred.
-   * @throws NotFoundError  When no matching correlation was found.
+   * @throws NotFoundError   When no matching correlation was found.
    */
   finishWithError(identity: IIdentity, correlationId: string, error: Error): Promise<void>;
 }

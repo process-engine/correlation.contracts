@@ -24,7 +24,7 @@ export interface ICorrelationRepository {
    * @param correlationId           The ID of the Correlation to store.
    * @param processInstanceId       The ID of the ProcessInstance to associate
    *                                with the Correlation.
-   * @param processModelId           The ID of the ProcessModel to associate
+   * @param processModelId          The ID of the ProcessModel to associate
    *                                with the Correlation.
    * @param processModelHash        The Hash of the ProcessModel to associate
    *                                with the Correlation.
@@ -98,35 +98,35 @@ export interface ICorrelationRepository {
    * Returns a list of all Correlations in the specified state.
    *
    * @async
-   * @param   state       The state by which to retrieve the correlations.
-   * @returns             The retrieved correlations.
+   * @param   state       The state by which to retrieve the Correlations.
+   * @returns             The retrieved Correlations.
    */
   getCorrelationsByState(state: CorrelationState): Promise<Array<CorrelationFromRepository>>;
 
   /**
-   * Removes all correlations with a specific ProcessModelId.
+   * Removes all Correlations with a specific ProcessModelId.
    *
    * @async
-   * @param   processModelId The ID of the processModel, by which correlations should be removed.
+   * @param   processModelId The ID of the processModel, by which Correlations should be removed.
    */
   deleteCorrelationByProcessModelId(correlationId: string): Promise<void>;
 
   /**
-   * Finishes the given correlation.
+   * Finishes the given Correlation.
    *
    * @async
    * @param   correlationId   The ID of the Correlation to finish.
-   * @throws  NotFoundError  When no matching correlation was found.
+   * @throws  NotFoundError  When no matching Correlation was found.
    */
   finishCorrelation(correlationId: string): Promise<void>;
 
   /**
-   * Finishes the given correlation with an error.
+   * Finishes the given Correlation with an error.
    *
    * @async
    * @param   correlationId   The ID of the Correlation to finish erroneously.
    * @param   error           The error that occurred.
-   * @throws  NotFoundError  When no matching correlation was found.
+   * @throws  NotFoundError  When no matching Correlation was found.
    */
   finishWithError(correlationId: string, error: Error): Promise<void>;
 }
