@@ -110,23 +110,22 @@ export interface ICorrelationRepository {
    * @param   processModelId The ID of the processModel, by which Correlations should be removed.
    */
   deleteCorrelationByProcessModelId(correlationId: string): Promise<void>;
-
   /**
    * Finishes the given Correlation.
    *
    * @async
-   * @param   correlationId   The ID of the Correlation to finish.
-   * @throws  NotFoundError  When no matching Correlation was found.
+   * @param  correlationId    The ID of the Correlation to finish.
+   * @throws {NotFoundError}  When no matching correlation was found.
    */
-  finishCorrelation(correlationId: string): Promise<void>;
+  finishProcessInstanceInCorrelation(correlationId: string): Promise<void>;
 
   /**
    * Finishes the given Correlation with an error.
    *
    * @async
-   * @param   correlationId   The ID of the Correlation to finish erroneously.
-   * @param   error           The error that occurred.
-   * @throws  NotFoundError  When no matching Correlation was found.
+   * @param  correlationId    The ID of the Correlation to finish erroneously.
+   * @param  error            The error that occurred.
+   * @throws {NotFoundError}  When no matching correlation was found.
    */
-  finishWithError(correlationId: string, error: Error): Promise<void>;
+  finishProcessInstanceInCorrelationWithError(correlationId: string, error: Error): Promise<void>;
 }

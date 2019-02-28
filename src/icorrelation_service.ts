@@ -114,24 +114,29 @@ export interface ICorrelationService {
    * @param processModelId  The ID of the processModel, by which Correlations should be removed.
    */
   deleteCorrelationByProcessModelId(identity: IIdentity, processModelId: string): Promise<void>;
+
   /**
    * Finishes the given Correlation.
    *
    * @async
-   * @param  identity        The executing users identity.
-   * @param  correlationId   The ID of the Correlation to finish.
-   * @throws NotFoundError   When no matching correlation was found.
+   * @param  identity         The executing users identity.
+   * @param  correlationId    The ID of the Correlation to finish.
+   * @throws {NotFoundError}  When no matching correlation was found.
+   * @throws {ForbiddenError} When the user doesn't have access to the
+   *                          correlation.
    */
-  finishCorrelation(identity: IIdentity, correlationId: string): Promise<void>;
+  finishProcessInstanceInCorrelation(identity: IIdentity, correlationId: string): Promise<void>;
 
   /**
    * Finishes the given Correlation with an error.
    *
    * @async
-   * @param  identity        The executing users identity.
-   * @param  correlationId   The ID of the Correlation to finish erroneously.
-   * @param  error           The error that occurred.
-   * @throws NotFoundError   When no matching correlation was found.
+   * @param  identity         The executing users identity.
+   * @param  correlationId    The ID of the Correlation to finish erroneously.
+   * @param  error            The error that occurred.
+   * @throws {NotFoundError}  When no matching correlation was found.
+   * @throws {ForbiddenError} When the user doesn't have access to the
+   *                          correlation.
    */
-  finishWithError(identity: IIdentity, correlationId: string, error: Error): Promise<void>;
+  finishProcessInstanceInCorrelationWithError(identity: IIdentity, correlationId: string, error: Error): Promise<void>;
 }
