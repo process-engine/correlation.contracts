@@ -1,3 +1,5 @@
+import {IIdentity} from '@essential-projects/iam_contracts';
+
 import {CorrelationState} from './correlation_state';
 
 /**
@@ -12,5 +14,6 @@ export class CorrelationProcessInstance {
   public parentProcessInstanceId?: string;
   public state: CorrelationState;
   public error: Error;
+  public identity: IIdentity;
   public createdAt?: Date;
 }
