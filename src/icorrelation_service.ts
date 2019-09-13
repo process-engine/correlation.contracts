@@ -31,21 +31,25 @@ export interface ICorrelationService {
    *                                Subprocess, this contains the ID of the
    *                                ProcessInstance that started it.
    */
-  createEntry(identity: IIdentity,
+  createEntry(
+    identity: IIdentity,
     correlationId: string,
     processInstanceId: string,
     processModelId: string,
     processModelHash: string,
-    parentProcessInstanceId?: string): Promise<void>;
+    parentProcessInstanceId?: string,
+  ): Promise<void>;
 
   /**
    * Returns a list of all Correlations.
    *
    * @async
    * @param identity The executing users identity.
+   * @param offset   Optional: The number of records to skip.
+   * @param limit    Optional: The max. number of entries to return.
    * @returns        A list of Correlations.
    */
-  getAll(identity: IIdentity): Promise<Array<Correlation>>;
+  getAll(identity: IIdentity, offset?: number, limit?: number): Promise<Array<Correlation>>;
 
   /**
    * Returns a list of all Correlations that contain at least one active
@@ -53,9 +57,11 @@ export interface ICorrelationService {
    *
    * @async
    * @param identity The executing users identity.
+   * @param offset   Optional: The number of records to skip.
+   * @param limit    Optional: The max. number of entries to return.
    * @returns        A list of Correlations.
    */
-  getActive(identity: IIdentity): Promise<Array<Correlation>>;
+  getActive(identity: IIdentity, offset?: number, limit?: number): Promise<Array<Correlation>>;
 
   /**
    * Gets a specific Correlation by its ID.
@@ -75,9 +81,11 @@ export interface ICorrelationService {
    * @param identity        The executing users identity.
    * @param processModelId  The ID of the ProcessModel for which to retrieve
    *                        the Correlations.
+   * @param offset          Optional: The number of records to skip.
+   * @param limit           Optional: The max. number of entries to return.
    * @returns               The retrieved Correlations.
    */
-  getByProcessModelId(identity: IIdentity, processModelId: string): Promise<Array<Correlation>>;
+  getByProcessModelId(identity: IIdentity, processModelId: string, offset?: number, limit?: number): Promise<Array<Correlation>>;
 
   /**
    * Gets the entry that belongs to the given ProcessInstanceId.

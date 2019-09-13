@@ -45,19 +45,23 @@ export interface ICorrelationRepository {
    * Returns a list of all Correlations.
    *
    * @async
+   * @param offset Optional: The number of records to skip.
+   * @param limit  Optional: The max. number of entries to return.
    * @returns A list of Correlations.
    */
-  getAll(): Promise<Array<CorrelationFromRepository>>;
+  getAll(offset?: number, limit?: number): Promise<Array<CorrelationFromRepository>>;
 
   /**
    * Gets all entries with a specific CorrelationId.
    *
    * @async
    * @param   correlationId The ID of the Correlation to retrieve.
+   * @param   offset        Optional: The number of records to skip.
+   * @param   limit         Optional: The max. number of entries to return.
    * @returns               The retrieved Correlations.
    * @throws                404, If the Correlation was not found.
    */
-  getByCorrelationId(correlationId: string): Promise<Array<CorrelationFromRepository>>;
+  getByCorrelationId(correlationId: string, offset?: number, limit?: number): Promise<Array<CorrelationFromRepository>>;
 
   /**
    * Gets all entries with a specific ProcessModelId.
@@ -65,9 +69,11 @@ export interface ICorrelationRepository {
    * @async
    * @param   processModelId The ID of the ProcessModel for which to retrieve
    *                         the Correlations.
+   * @param   offset         Optional: The number of records to skip.
+   * @param   limit          Optional: The max. number of entries to return.
    * @returns                The retrieved Correlations.
    */
-  getByProcessModelId(processModelId: string): Promise<Array<CorrelationFromRepository>>;
+  getByProcessModelId(processModelId: string, offset?: number, limit?: number): Promise<Array<CorrelationFromRepository>>;
 
   /**
    * Gets the entry that belongs to the given ProcessInstanceId.
@@ -89,25 +95,29 @@ export interface ICorrelationRepository {
    * @async
    * @param   processInstanceId The ID of the ProcessInstance for which to retrieve
    *                            the SubProcess-Correlations.
+   * @param   offset            Optional: The number of records to skip.
+   * @param   limit             Optional: The max. number of entries to return.
    * @returns                   The retrieved Correlations.
    *                            If none are found, an empty Array is returned.
    */
-  getSubprocessesForProcessInstance(processInstanceId: string): Promise<Array<CorrelationFromRepository>>;
+  getSubprocessesForProcessInstance(processInstanceId: string, offset?: number, limit?: number): Promise<Array<CorrelationFromRepository>>;
 
   /**
    * Returns a list of all Correlations in the specified state.
    *
    * @async
-   * @param   state       The state by which to retrieve the Correlations.
-   * @returns             The retrieved Correlations.
+   * @param   state  The state by which to retrieve the Correlations.
+   * @param   offset Optional: The number of records to skip.
+   * @param   limit  Optional: The max. number of entries to return.
+   * @returns        The retrieved Correlations.
    */
-  getCorrelationsByState(state: CorrelationState): Promise<Array<CorrelationFromRepository>>;
+  getCorrelationsByState(state: CorrelationState, offset?: number, limit?: number): Promise<Array<CorrelationFromRepository>>;
 
   /**
    * Removes all Correlations with a specific ProcessModelId.
    *
    * @async
-   * @param   processModelId The ID of the processModel, by which Correlations should be removed.
+   * @param processModelId The ID of the processModel, by which Correlations should be removed.
    */
   deleteCorrelationByProcessModelId(correlationId: string): Promise<void>;
 
