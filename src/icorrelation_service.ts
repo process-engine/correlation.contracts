@@ -1,6 +1,6 @@
 import {IIdentity} from '@essential-projects/iam_contracts';
 
-import {Correlation} from './types/index';
+import {Correlation, ProcessInstance} from './types/index';
 
 /**
  * The Service for accessing the CorrelationRepository.
@@ -88,31 +88,27 @@ export interface ICorrelationService {
   getByProcessModelId(identity: IIdentity, processModelId: string, offset?: number, limit?: number): Promise<Array<Correlation>>;
 
   /**
-   * Gets the entry that belongs to the given ProcessInstanceId.
-   * Note that ProcessInstanceIds are always unique, so this will always
-   * return only one entry.
+   * Gets a ProcessInstance by its ID.
    *
    * @async
    * @param identity          The executing users identity.
-   * @param processInstanceId The ID of the ProcessInstance for which to retrieve
-   *                          the Correlations.
-   * @returns                 The retrieved Correlation.
-   * @throws                  404, If the Correlation was not found.
+   * @param processInstanceId The ID of the ProcessInstance to get.
+   * @returns                 The retrieved ProcessInstance.
+   * @throws                  404, If the ProcessInstance was not found.
    */
-  getByProcessInstanceId(identity: IIdentity, processInstanceId: string): Promise<Correlation>;
+  getByProcessInstanceId(identity: IIdentity, processInstanceId: string): Promise<ProcessInstance>;
 
   /**
-   * Gets a Correlation-Object that contains all Subprocesses for the given
-   * ProcessInstanceId.
+   * Gets all ProcessInstances that run as a Subprocess for the given ProcessInstanceId.
    *
    * @async
    * @param identity          The executing users identity.
    * @param processInstanceId The ID of the ProcessInstance for which to retrieve
-   *                          the SubProcess-Correlations.
-   * @returns                 The retrieved Correlations.
+   *                          the SubProcessInstances.
+   * @returns                 The retrieved SubProcessInstances.
    *                          If none are found, an empty Array is returned.
    */
-  getSubprocessesForProcessInstance(identity: IIdentity, processInstanceId: string): Promise<Correlation>;
+  getSubprocessesForProcessInstance(identity: IIdentity, processInstanceId: string): Promise<Array<ProcessInstance>>;
 
   /**
    * Removes all Correlations with a specific ProcessModelId.
