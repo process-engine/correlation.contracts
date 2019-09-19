@@ -7,7 +7,7 @@ import {CorrelationState} from './correlation_state';
  */
 export class ProcessInstanceFromRepository {
 
-  public id: string;
+  public correlationId: string;
   public processModelHash: string;
   public processModelId: string;
   public processInstanceId: string;
