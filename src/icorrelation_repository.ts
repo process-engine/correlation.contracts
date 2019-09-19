@@ -1,7 +1,7 @@
 import {IIdentity} from '@essential-projects/iam_contracts';
 
 import {CorrelationState} from './types/correlation_state';
-import {CorrelationFromRepository} from './types/index';
+import {ProcessInstanceFromRepository} from './types/index';
 
 /**
  * The repository for accessing and manipulating correlations.
@@ -49,7 +49,7 @@ export interface ICorrelationRepository {
    * @param limit  Optional: The max. number of entries to return.
    * @returns A list of Correlations.
    */
-  getAll(offset?: number, limit?: number): Promise<Array<CorrelationFromRepository>>;
+  getAll(offset?: number, limit?: number): Promise<Array<ProcessInstanceFromRepository>>;
 
   /**
    * Gets all entries with a specific CorrelationId.
@@ -61,7 +61,7 @@ export interface ICorrelationRepository {
    * @returns               The retrieved Correlations.
    * @throws                404, If the Correlation was not found.
    */
-  getByCorrelationId(correlationId: string, offset?: number, limit?: number): Promise<Array<CorrelationFromRepository>>;
+  getByCorrelationId(correlationId: string, offset?: number, limit?: number): Promise<Array<ProcessInstanceFromRepository>>;
 
   /**
    * Gets all entries with a specific ProcessModelId.
@@ -73,7 +73,7 @@ export interface ICorrelationRepository {
    * @param   limit          Optional: The max. number of entries to return.
    * @returns                The retrieved Correlations.
    */
-  getByProcessModelId(processModelId: string, offset?: number, limit?: number): Promise<Array<CorrelationFromRepository>>;
+  getByProcessModelId(processModelId: string, offset?: number, limit?: number): Promise<Array<ProcessInstanceFromRepository>>;
 
   /**
    * Gets the entry that belongs to the given ProcessInstanceId.
@@ -86,7 +86,7 @@ export interface ICorrelationRepository {
    * @returns                   The retrieved Correlation.
    * @throws                    404, If the Correlation was not found.
    */
-  getByProcessInstanceId(processInstanceId: string): Promise<CorrelationFromRepository>;
+  getByProcessInstanceId(processInstanceId: string): Promise<ProcessInstanceFromRepository>;
 
   /**
    * Gets all entries that describe a Subprocess for the ProcessInstance with the
@@ -100,7 +100,7 @@ export interface ICorrelationRepository {
    * @returns                   The retrieved Correlations.
    *                            If none are found, an empty Array is returned.
    */
-  getSubprocessesForProcessInstance(processInstanceId: string, offset?: number, limit?: number): Promise<Array<CorrelationFromRepository>>;
+  getSubprocessesForProcessInstance(processInstanceId: string, offset?: number, limit?: number): Promise<Array<ProcessInstanceFromRepository>>;
 
   /**
    * Returns a list of all Correlations in the specified state.
@@ -111,7 +111,7 @@ export interface ICorrelationRepository {
    * @param   limit  Optional: The max. number of entries to return.
    * @returns        The retrieved Correlations.
    */
-  getCorrelationsByState(state: CorrelationState, offset?: number, limit?: number): Promise<Array<CorrelationFromRepository>>;
+  getCorrelationsByState(state: CorrelationState, offset?: number, limit?: number): Promise<Array<ProcessInstanceFromRepository>>;
 
   /**
    * Removes all Correlations with a specific ProcessModelId.
