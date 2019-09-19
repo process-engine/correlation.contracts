@@ -7,12 +7,13 @@ import {CorrelationState} from './correlation_state';
  */
 export class CorrelationProcessInstance {
 
+  public correlationId: string;
   public processDefinitionName: string;
-  public hash: string;
-  public xml: string;
   public processModelId: string;
   public processInstanceId?: string;
   public parentProcessInstanceId?: string;
+  public hash: string;
+  public xml: string;
   public state: CorrelationState;
   public error: Error;
   public identity: IIdentity;
