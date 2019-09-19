@@ -3,9 +3,9 @@ import {IIdentity} from '@essential-projects/iam_contracts';
 import {CorrelationState} from './correlation_state';
 
 /**
- * Describes a ProcessInstance within a Correlation.
+ * Describes a ProcessInstance.
  */
-export class CorrelationProcessInstance {
+export class ProcessInstance {
 
   public correlationId: string;
   public processDefinitionName: string;
