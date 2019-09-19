@@ -1,6 +1,6 @@
 import {IIdentity} from '@essential-projects/iam_contracts';
 
-import {Correlation, ProcessInstance} from './types/index';
+import {Correlation, CorrelationState, ProcessInstance} from './types/index';
 
 /**
  * The Service for accessing the CorrelationRepository.
@@ -105,10 +105,48 @@ export interface ICorrelationService {
    * @param identity          The executing users identity.
    * @param processInstanceId The ID of the ProcessInstance for which to retrieve
    *                          the SubProcessInstances.
+   * @param offset            Optional: The number of records to skip.
+   * @param limit             Optional: The max. number of entries to return.
    * @returns                 The retrieved SubProcessInstances.
    *                          If none are found, an empty Array is returned.
    */
-  getSubprocessesForProcessInstance(identity: IIdentity, processInstanceId: string): Promise<Array<ProcessInstance>>;
+  getSubprocessesForProcessInstance(identity: IIdentity, processInstanceId: string, offset?: number, limit?: number): Promise<Array<ProcessInstance>>;
+
+  /**
+   * Gets a list of all ProcessInstances that run in the given Correlation.
+   *
+   * @async
+   * @param   identity       The executing users identity.
+   * @param   correlationId  The ID of the correlation for which to get the ProcessInstances.
+   * @param   offset         Optional: The number of records to skip.
+   * @param   limit          Optional: The max. number of entries to return.
+   * @returns                A list with matching ProcessInstances; or an empty Array, if non were found.
+   */
+  getProcessInstancesForCorrelation(identity: IIdentity, correlationId: string, offset?: number, limit?: number): Promise<Array<ProcessInstance>>;
+
+  /**
+   * Gets a list of all ProcessInstances for the given ProcessModel.
+   *
+   * @async
+   * @param   identity        The executing users identity.
+   * @param   processModelId  The ID of the ProcessModel for which to get the ProcessInstances.
+   * @param   offset          Optional: The number of records to skip.
+   * @param   limit           Optional: The max. number of entries to return.
+   * @returns                 A list with matching ProcessInstances; or an empty Array, if non were found.
+   */
+  getProcessInstancesForProcessModel(identity: IIdentity, processModelId: string, offset?: number, limit?: number): Promise<Array<ProcessInstance>>;
+
+  /**
+   * Gets a list of all ProcessInstances that are in a matching state.
+   *
+   * @async
+   * @param   identity The executing users identity.
+   * @param   state    the state by which to query the ProcessInstances.
+   * @param   offset   Optional: The number of records to skip.
+   * @param   limit    Optional: The max. number of entries to return.
+   * @returns          A list with matching ProcessInstances; or an empty Array, if non were found.
+   */
+  getProcessInstancesByState(identity: IIdentity, state: CorrelationState, offset?: number, limit?: number): Promise<Array<ProcessInstance>>;
 
   /**
    * Removes all Correlations with a specific ProcessModelId.
