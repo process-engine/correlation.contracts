@@ -5,13 +5,12 @@ import {Correlation, CorrelationState, ProcessInstance} from './types/index';
 /**
  * The Service for accessing the CorrelationRepository.
  *
- * Correlations combine a Correlation ID with a ProcessModel Hash.
- * This allows for implementing versioning of ProcessModels, as well
- * as keeping track on how a ProcessModel looked at the time a certain
- * Correlation was run.
+ * Correlations combine a Correlation ID and ProcessInstance with a ProcessModel Hash.
+ * This allows for implementing versioning of ProcessModels, as well as keeping
+ * track on how a ProcessModel looked at the time a certain ProcessInstance was run.
  *
- * Note that a ProcessModel instance will only belong to one Correlation,
- * but a Correlation can have multiple ProcessModel instances.
+ * Note that a ProcssInstance will only belong to one Correlation,
+ * but a Correlation can have multiple ProcssInstances.
  */
 export interface ICorrelationService {
 
