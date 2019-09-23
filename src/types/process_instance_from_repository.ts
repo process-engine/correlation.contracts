@@ -3,11 +3,11 @@ import {IIdentity} from '@essential-projects/iam_contracts';
 import {CorrelationState} from './correlation_state';
 
 /**
- * Describes a Correlation, as it is stored in the CorrelationRepository.
+ * Describes a ProcessInstance as it is stored in the database.
  */
-export class CorrelationFromRepository {
+export class ProcessInstanceFromRepository {
 
-  public id: string;
+  public correlationId: string;
   public processModelHash: string;
   public processModelId: string;
   public processInstanceId: string;
