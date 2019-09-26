@@ -1,4 +1,4 @@
-import {CorrelationProcessInstance} from './correlation_process_instance';
+import {ProcessInstance} from './process_instance';
 import {CorrelationState} from './correlation_state';
 
 /**
@@ -7,7 +7,7 @@ import {CorrelationState} from './correlation_state';
 export class Correlation {
 
   public id: string;
-  public processInstances: Array<CorrelationProcessInstance>;
+  public processInstances: Array<ProcessInstance>;
   public state: CorrelationState;
   public error: Error;
   public createdAt?: Date;
