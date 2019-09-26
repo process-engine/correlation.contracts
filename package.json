@@ -1,6 +1,6 @@
 {
   "name": "@process-engine/correlation.contracts",
-  "version": "3.0.0",
+  "version": "3.0.0-beta.1",
   "description": "Contains the commonly used contracts for the Correlation API.",
   "main": "dist/commonjs/index.js",
   "typings": "dist/index.d.ts",
